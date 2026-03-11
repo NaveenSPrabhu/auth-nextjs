@@ -26,7 +26,8 @@ export const sendEmail= async ({email, emailType, userId}: any) => {
             from: 'naveen@gmail.com',
             to: email,
             subject: emailType === "VERIFY" ? "Verify Your Account" : "Reset Your Password",
-            html: `<p>Click <a href="http://localhost:3000/${emailType === "VERIFY" ? "verify" : "reset-password"}?token=${token}">here</a> to ${emailType === "VERIFY" ? "verify your account" : "reset your password"}</p>`
+            html: `<p>Click <a href="http://localhost:3000/${emailType === "VERIFY" ? "verify" : "reset-password"}?token=${token}">here</a> to ${emailType === "VERIFY" ? "verify your account" : "reset your password"}
+            or copy this link and paste it in your browser: <br> ${process.env.domain}/verifyemail?token=${token}</p>`
         };
         const mailres=await transporter.sendMail(mailOptions);
         return mailres;
